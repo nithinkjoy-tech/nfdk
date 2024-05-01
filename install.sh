@@ -72,7 +72,7 @@ GITHUB=${GITHUB-"https://github.com"}
 github_repo="$GITHUB/nithinkjoy-tech/nfdk"
 exe_name=nfdk
 
-nfdk_uri=$github_repo/releases/latest/download/nfdk.tar
+nfdk_uri=$github_repo/releases/latest/download/nfdk.zip
 
 install_env=NFDK_INSTALL
 bin_env=\$$install_env/bin

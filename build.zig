@@ -105,9 +105,9 @@ pub fn build(b: *std.Build) void {
 
     const tar = b.addSystemCommand(&.{ "tar", "czf" });
     tar.setCwd(wf.getDirectory());
-    const out_file = tar.addOutputFileArg("nfdk.tar");
+    const out_file = tar.addOutputFileArg("nfdk.zip");
     tar.addArgs(&.{"."});
 
-    const install_tar = b.addInstallFileWithDir(out_file, .prefix, "nfdk.tar");
+    const install_tar = b.addInstallFileWithDir(out_file, .prefix, "nfdk.zip");
     b.getInstallStep().dependOn(&install_tar.step);
 }
