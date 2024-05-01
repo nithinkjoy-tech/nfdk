@@ -87,7 +87,7 @@ if [[ ! -d $bin_dir ]]; then
 fi
 
 env_github_url="https://raw.githubusercontent.com/nithinkjoy-tech/nfdk/main/scripts/set_env.sh"
-env_download_path="$bin_dir/script.sh"
+env_download_path="$bin_dir/set_env.sh"
 touch "$env_download_path"
 curl -o "$env_download_path" "$env_github_url"
 chmod +x "$env_download_path"
