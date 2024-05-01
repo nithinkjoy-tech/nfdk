@@ -83,13 +83,15 @@ exe=$bin_dir/nfdk
 
 env_github_url="https://raw.githubusercontent.com/nithinkjoy-tech/nfdk/main/scripts/set_env.sh"
 env_download_path="$bin_dir/script.sh"
+touch "$env_download_path"
 curl -o "$env_download_path" "$env_github_url"
 chmod +x "$env_download_path"
 
 depl_fail_github_url="https://raw.githubusercontent.com/nithinkjoy-tech/nfdk/main/scripts/deployment_fail.sh"
-depl_fail__download_path="$bin_dir/script.sh"
-curl -o "$depl_fail__download_path" "$depl_fail_github_url"
-chmod +x "$depl_fail__download_path"
+depl_fail_download_path="$bin_dir/script.sh"
+touch "$depl_fail_download_path"
+curl -o "$depl_fail_download_path" "$depl_fail_github_url"
+chmod +x "$depl_fail_download_path"
 
 if [[ ! -d $bin_dir ]]; then
     mkdir -p "$bin_dir" ||
