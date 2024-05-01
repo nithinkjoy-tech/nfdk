@@ -81,6 +81,11 @@ install_dir=${!install_env:-$HOME/.nfdk}
 bin_dir=$install_dir/bin
 exe=$bin_dir/nfdk
 
+if [[ ! -d $bin_dir ]]; then
+    mkdir -p "$bin_dir" ||
+        error "Failed to create install directory \"$bin_dir\""
+fi
+
 env_github_url="https://raw.githubusercontent.com/nithinkjoy-tech/nfdk/main/scripts/set_env.sh"
 env_download_path="$bin_dir/script.sh"
 touch "$env_download_path"
@@ -88,15 +93,10 @@ curl -o "$env_download_path" "$env_github_url"
 chmod +x "$env_download_path"
 
 depl_fail_github_url="https://raw.githubusercontent.com/nithinkjoy-tech/nfdk/main/scripts/deployment_fail.sh"
-depl_fail_download_path="$bin_dir/script.sh"
+depl_fail_download_path="$bin_dir/deployment_fail.sh"
 touch "$depl_fail_download_path"
 curl -o "$depl_fail_download_path" "$depl_fail_github_url"
 chmod +x "$depl_fail_download_path"
-
-if [[ ! -d $bin_dir ]]; then
-    mkdir -p "$bin_dir" ||
-        error "Failed to create install directory \"$bin_dir\""
-fi
 
 curl --fail --location --progress-bar --output "$exe.zip" "$nfdk_uri" ||
     error "Failed to download nfdk from \"$nfdk_uri\""
