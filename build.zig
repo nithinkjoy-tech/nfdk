@@ -103,11 +103,12 @@ pub fn build(b: *std.Build) void {
     _ = wf.addCopyFile(exe.getEmittedBin(), app_exe_name);
     // _ = wf.add("project/version.txt", version);
 
+    //TODO: Use zip file compression instead of tar
     const tar = b.addSystemCommand(&.{ "tar", "czf" });
     tar.setCwd(wf.getDirectory());
-    const out_file = tar.addOutputFileArg("nfdk.zip");
+    const out_file = tar.addOutputFileArg("nfdk.tar");
     tar.addArgs(&.{"."});
 
-    const install_tar = b.addInstallFileWithDir(out_file, .prefix, "nfdk.zip");
+    const install_tar = b.addInstallFileWithDir(out_file, .prefix, "nfdk.tar");
     b.getInstallStep().dependOn(&install_tar.step);
 }

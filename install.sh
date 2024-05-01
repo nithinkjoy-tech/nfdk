@@ -104,13 +104,13 @@ curl --fail --location --progress-bar --output "$exe.zip" "$nfdk_uri" ||
 unzip -oqd "$bin_dir" "$exe.zip" ||
     error 'Failed to extract nfdk'
 
-mv "$bin_dir/nfdk/$exe_name" "$exe" ||
-    error 'Failed to move extracted nfdk to destination'
+# mv "$bin_dir/$exe_name" "$exe" ||
+#     error 'Failed to move extracted nfdk to destination'
 
 chmod +x "$exe" ||
     error 'Failed to set permissions on nfdk executable'
 
-rm -r "$bin_dir/nfdk" "$exe.zip"
+rm -r "$exe.zip"
 
 tildify() {
     if [[ $1 = $HOME/* ]]; then
