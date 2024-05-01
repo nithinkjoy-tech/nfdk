@@ -72,7 +72,7 @@ GITHUB=${GITHUB-"https://github.com"}
 github_repo="$GITHUB/nithinkjoy-tech/nfdk"
 exe_name=nfdk
 
-nfdk_uri=$github_repo/releases/latest/download/nfdk-$target.zip
+nfdk_uri=$github_repo/releases/latest/download/nfdk.tar
 
 install_env=NFDK_INSTALL
 bin_env=\$$install_env/bin
@@ -104,13 +104,13 @@ curl --fail --location --progress-bar --output "$exe.zip" "$nfdk_uri" ||
 unzip -oqd "$bin_dir" "$exe.zip" ||
     error 'Failed to extract nfdk'
 
-mv "$bin_dir/nfdk-$target/$exe_name" "$exe" ||
+mv "$bin_dir/nfdk/$exe_name" "$exe" ||
     error 'Failed to move extracted nfdk to destination'
 
 chmod +x "$exe" ||
     error 'Failed to set permissions on nfdk executable'
 
-rm -r "$bin_dir/nfdk-$target" "$exe.zip"
+rm -r "$bin_dir/nfdk" "$exe.zip"
 
 tildify() {
     if [[ $1 = $HOME/* ]]; then
