@@ -50,12 +50,35 @@ pub fn getenv(_: []const []const u8, allocator: std.mem.Allocator, printURL: boo
     return webhookURL;
 }
 
+pub fn upgrade() !void {
+    comptime var cham = Chameleon.init(.Auto);
+    var arena = std.heap.ArenaAllocator.init(std.heap.page_allocator);
+    defer arena.deinit();
+    const allocator = arena.allocator();
+
+    const argv = [_][]const u8{ "sh", "/Users/admin/.nfdk/bin/upgrade.sh" };
+    var child = Child.init(&argv, allocator);
+    child.stdout_behavior = .Inherit;
+    child.stderr_behavior = .Inherit;
+    try child.spawn();
+    const term = try child.wait();
+    if (term.Exited != 0) {
+        std.debug.print(cham.red().fmt("Upgrade Failed\n"), .{});
+    } else {
+        std.debug.print(cham.green().fmt("Successfully Upgraded\n"), .{});
+    }
+}
+
 pub fn getHelp() !void {
     const help =
+        \\
         \\ Commands:
         \\ nfdk theme sync                                       To deploy theme and notify
         \\ nfdk get key                                          Displays the Webhook URL
-        \\ nfdk set WEBHOOK_URL="webhook URL"(Without quotes)    Sets the webhook URl
+        \\ nfdk set WEBHOOK_URL=<URL>(Without any quotes)        Sets the webhook URl
+        \\ nfdk upgrade                                          Upgrades to latest version
+        \\ nfdk help or --help                                   Displays help
+        \\
     ;
     std.debug.print("{s}", .{help});
 }

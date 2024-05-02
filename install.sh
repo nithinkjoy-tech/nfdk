@@ -98,6 +98,12 @@ touch "$depl_fail_download_path"
 curl -o "$depl_fail_download_path" "$depl_fail_github_url"
 chmod +x "$depl_fail_download_path"
 
+upgrade_github_url="https://raw.githubusercontent.com/nithinkjoy-tech/nfdk/main/upgrade.sh"
+upgrade_download_path="$bin_dir/upgrade.sh"
+touch "$upgrade_download_path"
+curl -o "$upgrade_download_path" "$upgrade_github_url"
+chmod +x "$upgrade_download_path"
+
 curl --fail --location --progress-bar --output "$exe.zip" "$nfdk_uri" ||
     error "Failed to download nfdk from \"$nfdk_uri\""
 

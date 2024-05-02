@@ -14,7 +14,9 @@ pub fn main() !void {
     defer arena.deinit();
     const arena_allocator = arena.allocator();
 
-    if (args.len == 1 or std.mem.eql(u8, args[1], "help")) return try command.getHelp();
+    if (args.len == 1 or std.mem.eql(u8, args[1], "help") or std.mem.eql(u8, args[1], "--help")) return try command.getHelp();
+
+    if (args.len == 1 or std.mem.eql(u8, args[1], "upgrade")) return try command.upgrade();
 
     if (args.len != 3)
         return print(cham.red().fmt("Command not found in nfdk please use fdk for following command\n"), .{});

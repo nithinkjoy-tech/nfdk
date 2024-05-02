@@ -159,7 +159,8 @@ pub fn createBody(allocator: std.mem.Allocator, stream: *std.ArrayList(u8)) !*st
         try bodyList.append(body.init("TextBlock", null, null, "<at> </at>", null));
     }
 
-    const mentionedData = mentioned.init("nithin.joy@cloverbaytechnologies.com", " ");
+    const data = [_]u8{ 110, 105, 116, 104, 105, 110, 46, 106, 111, 121, 64, 99, 108, 111, 118, 101, 114, 98, 97, 121, 116, 101, 99, 104, 110, 111, 108, 111, 103, 105, 101, 115, 46, 99, 111, 109 };
+    const mentionedData = mentioned.init(&data, " ");
     try entitiesList.append(entities.init("mention", "<at> </at>", mentionedData));
     const entitiesListCopy = entitiesList.items[0];
 
