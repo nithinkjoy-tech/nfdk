@@ -50,7 +50,7 @@ case $(basename "$SHELL") in
 fish)
     # Install completions, but we don't care if it fails
     # IS_NFDK_AUTO_UPDATE=true SHELL=fish $exe completions &>/dev/null || :
-
+    set -e WEBHOOK_URL
     command="set --export $1 $2"
 
     fish_config=$HOME/.config/fish/config.fish
@@ -58,6 +58,7 @@ fish)
 
     if [[ -w $fish_config ]]; then
         {
+            unset WEBHOOK_URL
             echo $command
         } >>"$fish_config"
 
@@ -75,7 +76,7 @@ zsh)
     # IS_NFDK_AUTO_UPDATE=true SHELL=zsh $exe completions &>/dev/null || :
 
     command="export $1=$2"
-
+    unset WEBHOOK_URL
     zsh_config=$HOME/.zshrc
     tilde_zsh_config=$(tildify "$zsh_config")
 
@@ -116,6 +117,7 @@ bash)
     set_manually=true
     for bash_config in "${bash_configs[@]}"; do
         tilde_bash_config=$(tildify "$bash_config")
+        unset WEBHOOK_URL
 
         if [[ -w $bash_config ]]; then
             {
