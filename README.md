@@ -1,7 +1,7 @@
 
 # Notify FDK (nfdk)
 
-This software will send message in teams channel when Fynd theme deployment is done. The message will contain last 10 PRs and its details. nfdk will also give a system notification to the user who is deploying when the deployment fails.
+This CLI tool will send message in teams channel when Fynd theme deployment is done. The message will contain last 10 PRs and its details. nfdk will also give a system notification to the user who is deploying when the deployment fails.
 
 ## Example
 ![image](https://github.com/nithinkjoy-tech/nfdk/assets/62066971/cf565e1b-ebe1-4b96-8406-9403634b27e1)
