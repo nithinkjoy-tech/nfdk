@@ -56,6 +56,7 @@ fish)
     fish_config=$HOME/.config/fish/config.fish
     tilde_fish_config=$(tildify "$fish_config")
 
+    #TODO: Create a fish config file if not exist
     if [[ -w $fish_config ]]; then
         {
             unset WEBHOOK_URL
@@ -80,6 +81,7 @@ zsh)
     zsh_config=$HOME/.zshrc
     tilde_zsh_config=$(tildify "$zsh_config")
 
+    #TODO: Create a fish zshrc config file if not exist
     if [[ -w $zsh_config ]]; then
         {
             echo $command
@@ -119,6 +121,7 @@ bash)
         tilde_bash_config=$(tildify "$bash_config")
         unset WEBHOOK_URL
 
+        #TODO: Create a bash config file if not exist
         if [[ -w $bash_config ]]; then
             {
                 echo $command

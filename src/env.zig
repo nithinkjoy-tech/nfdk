@@ -9,6 +9,7 @@ pub fn setEnv(name: []const u8, value: []const u8) !void {
     defer arena.deinit();
     const allocator = arena.allocator();
 
+    // TODO: remove hardcoded path
     const argv = [_][]const u8{ "sh", "/Users/admin/.nfdk/bin/set_env.sh", name, value };
     var child = Child.init(&argv, allocator);
     child.stdout_behavior = .Inherit;

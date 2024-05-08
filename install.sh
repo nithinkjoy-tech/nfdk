@@ -246,7 +246,7 @@ bash)
     for bash_config in "${bash_configs[@]}"; do
         tilde_bash_config=$(tildify "$bash_config")
 
-         #TODO: Create a bash config file if not exist
+        #TODO: Create a bash config file if not exist
         if [[ -w $bash_config ]]; then
             {
                 echo -e '\n# nfdk'

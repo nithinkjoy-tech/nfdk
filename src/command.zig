@@ -56,6 +56,7 @@ pub fn upgrade() !void {
     defer arena.deinit();
     const allocator = arena.allocator();
 
+    // TODO: remove hardcoded path
     const argv = [_][]const u8{ "sh", "/Users/admin/.nfdk/bin/upgrade.sh" };
     var child = Child.init(&argv, allocator);
     child.stdout_behavior = .Inherit;
