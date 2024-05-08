@@ -90,19 +90,22 @@ env_github_url="https://raw.githubusercontent.com/nithinkjoy-tech/nfdk/main/scri
 env_download_path="$bin_dir/set_env.sh"
 touch "$env_download_path"
 curl -o "$env_download_path" "$env_github_url"
-chmod +x "$env_download_path"
+chmod +x "$env_download_path" ||
+    error "Failed to make \"$env_download_path\" executable"
 
 depl_fail_github_url="https://raw.githubusercontent.com/nithinkjoy-tech/nfdk/main/scripts/deployment_fail.sh"
 depl_fail_download_path="$bin_dir/deployment_fail.sh"
 touch "$depl_fail_download_path"
 curl -o "$depl_fail_download_path" "$depl_fail_github_url"
-chmod +x "$depl_fail_download_path"
+chmod +x "$depl_fail_download_path" ||
+    error "Failed to make \"$depl_fail_download_path\" executable"
 
 upgrade_github_url="https://raw.githubusercontent.com/nithinkjoy-tech/nfdk/main/upgrade.sh"
 upgrade_download_path="$bin_dir/upgrade.sh"
 touch "$upgrade_download_path"
 curl -o "$upgrade_download_path" "$upgrade_github_url"
-chmod +x "$upgrade_download_path"
+chmod +x "$upgrade_download_path" ||
+    error "Failed to make \"$upgrade_download_path\" executable"
 
 curl --fail --location --progress-bar --output "$exe.zip" "$nfdk_uri" ||
     error "Failed to download nfdk from \"$nfdk_uri\""
@@ -162,6 +165,7 @@ fish)
     fish_config=$HOME/.config/fish/config.fish
     tilde_fish_config=$(tildify "$fish_config")
 
+    #TODO: Create a fish config file if not exist
     if [[ -w $fish_config ]]; then
         {
             echo -e '\n# nfdk'
@@ -194,6 +198,7 @@ zsh)
     zsh_config=$HOME/.zshrc
     tilde_zsh_config=$(tildify "$zsh_config")
 
+    #TODO: Create a fish zshrc config file if not exist
     if [[ -w $zsh_config ]]; then
         {
             echo -e '\n# nfdk'
@@ -241,6 +246,7 @@ bash)
     for bash_config in "${bash_configs[@]}"; do
         tilde_bash_config=$(tildify "$bash_config")
 
+         #TODO: Create a bash config file if not exist
         if [[ -w $bash_config ]]; then
             {
                 echo -e '\n# nfdk'
